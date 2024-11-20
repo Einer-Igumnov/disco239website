@@ -28,6 +28,7 @@ function App() {
     };
 
     const qrCodeSuccess = async(decodedText) => {
+      setEnabled(false);
       fetch(fetchUrl + '/get-user-data', {
         method: 'POST',
         headers: {
@@ -36,7 +37,6 @@ function App() {
         body: JSON.stringify({ uid: decodedText }),
       }).then((res) =>
         res.json().then((data) => {
-            setEnabled(false);
             setExists(data.exists);
             setQrMessage(decodedText);
             if(data.exists){

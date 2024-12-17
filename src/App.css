@@ -143,3 +143,17 @@ video {
   overflow-wrap: normal; /* Ensures wrapping occurs only at natural spaces */
   line-height: 1.5; /* Improves readability */
 }
+
+.other-message {
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  color: black;
+  text-align: center;
+  white-space: pre-wrap; /* Allows text to wrap */
+  word-break: keep-all; /* Prevents breaking words */
+  overflow-wrap: normal; /* Ensures wrapping occurs only at natural spaces */
+  line-height: 1.5; /* Improves readability */
+}

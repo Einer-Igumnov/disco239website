@@ -11,7 +11,7 @@ function App() {
   const [qrMessage, setQrMessage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
-  const fetchUrl = "https://192.168.0.110:2399";
+  const fetchUrl = "https://10.0.4.156:2399";
 
   useEffect(() => {
     const config = { fps: 10, qrbox: { width: 200, height: 200 } };
@@ -64,6 +64,7 @@ function App() {
     if (isEnabled) {
       html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccess);
       setQrMessage("");
+      setImageUrl("");
     } else {
       qrScanerStop();
     }
@@ -76,8 +77,8 @@ function App() {
   return (
     <div class="container">
       <div class="centered-container">
-      {qrMessage && !exists && <p className="error-message">Вам подсунули хуйню</p>}
-               {(qrMessage && exists) ? (imageUrl ? (
+      {qrMessage && !exists && <h1 className="error-message">Вам подсунули хуйню</h1>}
+               {(qrMessage && exists && name !== "guest" && name !== "test") ? (imageUrl ? (
                <img
                      src={imageUrl}
                      alt="Fetched from Flask server"
@@ -90,7 +91,9 @@ function App() {
              ) : (
                <p>Нет фотки</p>
              )):(<p></p>)}
-      {qrMessage && exists && <h1 className="name-message">{name}</h1>}
+      {qrMessage && exists && name === "guest" && <h1 className="other-message">Гость</h1>}
+      {qrMessage && exists && name === "test" && <h1 className="other-message">Тест</h1>}
+      {qrMessage && exists && name !== "guest" && name !== "test" && <h1 className="name-message">{name}</h1>}
       {qrMessage && exists && <h1 className="name-message">{class_name}</h1>}
       {(qrMessage && exists && arrived) ? <h1 className="arrived-message">Уже входил</h1>:<p></p>}
       </div>
